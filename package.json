@@ -1,0 +1,15 @@
+{
+  "author": "Anne Steenbeek",
+  "name": "villaPC",
+  "version": "0.0.1",
+  "description": "stay pc brah",
+  "main": "index.html",
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "^0.4.2",
+    "grunt-contrib-connect": "^1.0.1",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-open": "^0.2.3",
+    "grunt-wiredep": "^2.0.0"
+  }
+}
