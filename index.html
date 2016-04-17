@@ -7,10 +7,97 @@
   <!-- bower:css -->
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
   <!-- endbower -->
+   <link rel="stylesheet" href="bower_components/geo-bootstrap/swatch/bootstrap.min.css" />
+  <style>
+    .sortorder:after {
+      content: '\25b2';
+    }
+    .sortorder.reverse:after {
+      content: '\25bc';
+    }
+  </style>
+
 </head>
-<body>
+<body ng-app="myApp" ng-controller="myController">
+  <div class="jumbotron">
+    <h1 class="text-center">Het grote Villa 65 PC streepjes systeem</h1>
+    <h3 class="text-center">De grote winnaar is {{winner}}!</h3>
+  </div><!-- /.jumbotron -->
   <div>
-    <h1>Hello World!</h1>
+    <div class="container-fluid">
+      <!-- Bewoner scores -->
+      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <h1>Bewoner Scores</h1>
+        <table class="table">
+          <tr>
+            <th>Name</th>
+            <th></th>
+            <th>Score</th>
+          </tr>
+
+          <tr ng-repeat="bewoner in bewoners | orderBy:'score':reverse">
+            <td>
+              <h4>{{bewoner.$id}}</h4>
+            </td>
+            <td>
+              <div class="btn-group">
+                <button class="btn btn-primary btn-sm" ng-click="increment(bewoner, 1)">
+                  +1
+                </button>
+                <button class="btn btn-warning btn-sm" ng-click="increment(bewoner, 2)">
+                  +2
+                </button>
+                <button class="btn btn-danger btn-sm" ng-click="increment(bewoner, 3)">
+                  +3
+                </button>
+              </div><!-- /.btn-group -->
+            </td>
+
+            <td>
+              <span>
+                {{bewoner.score}}
+              </span>
+            </td>
+          </tr>
+        </table>
+      </div><!-- /.col-lg-4 col-md-4 col-sm-12 col-xs-12 -->
+      <!-- Quotes -->
+      <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+        <h1>Villa Quotes</h1>
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Villa quote" ng-model="villaQuote">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button" ng-click="submitQuote()">Submit</button>
+          </span>
+        </div><!-- /input-group -->
+        <div class="quoteList">
+          <table id="quotes" class="table">
+            <tr>
+              <th>
+                <button class="btn btn-secondary btn-sm " ng-click="order('timeStamp')">Datum</button>
+                <span class="sortorder" ng-show="predicate === 'timeStamp'" ng-class="{reverse:reverse}"></span>
+              </th>
+              <th>
+                <button class="btn btn-secondary btn-sm " ng-click="order('score')">Kuddos</button>
+                <span class="sortorder" ng-show="predicate === 'score'" ng-class="{reverse:reverse}"></span>
+              </th>
+              <th>
+              Quote
+              </th>
+            </tr>
+            <tr ng-repeat="quote in quotes | orderBy:predicate:reverse">
+              <td>{{quote.timeStamp | date:'short':'+01'}}</td>
+              <td>
+                {{quote.score}}
+                <button ng-click="kuddoQuote(quote)" class="btn btn-sm btn-primary">+1</button>
+                </td>
+              <td>{{quote.text}}</td>
+            </tr>
+          </table><!-- /#quotes -->
+        </div><!-- /.quoteList -->
+      </div><!-- /.col-lg-8 col-md-8 col-sm-12 col-xs-12 -->
+
+    </div><!-- /.container-fluid -->
   </div>
 
   <!-- bower:js -->
@@ -18,7 +105,7 @@
   <script src="bower_components/firebase/firebase.js"></script>
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-  <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+  <script src="bower_components/angularfire/dist/angularfire.js"></script>
   <!-- endbower -->
   <script src="scripts.js"></script>
   <script src="//localhost:35729/livereload.js"></script>

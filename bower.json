@@ -1,5 +1,5 @@
 {
-  "name": "quickplot",
+  "name": "villaPC",
   "version": "0.0.1",
   "authors": [
     "anne"
@@ -7,7 +7,8 @@
   "dependencies": {
     "firebase": "*",
     "angular": "*",
-    "bootstrap": "3.3.4",
-    "angular-bootstrap": "^1.3.2"
+    "bootstrap": "3.2.*",
+    "angularfire": "^1.2.0",
+    "geo-bootstrap": "*"
   }
 }

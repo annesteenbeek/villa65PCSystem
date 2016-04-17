@@ -9,7 +9,7 @@ module.exports = function(grunt) {
         },
       },
       bower: {
-        files: ['bower_components/*'],
+        files: ['bower.json'],
         tasks: ['wiredep'],
         options: {
           livereload: true,
